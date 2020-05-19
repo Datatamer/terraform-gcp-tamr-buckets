@@ -8,7 +8,7 @@ variable "labels" {
   description = "labels to be attached to the bucket"
 
   default = {
-    product    = "external_tamr"
+    product = "external_tamr"
   }
 }
 
