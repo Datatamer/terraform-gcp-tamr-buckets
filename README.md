@@ -16,19 +16,37 @@ module "minimal" {
 
 # Resources Created
 * two gcs buckets and associated iam policies
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-# Variables 
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12 |
+| google | >= 3.18.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | >= 3.18.0 |
+
 ## Inputs
-Write your Terraform module inputs.
-* `project_id` (required): project id for the buckets to be placed into
-* `labels` (optional): labels to be attached to the bucket
-* `bucket_locations` (optional): Location for the buckets, default is `US`.
-* `tamr_home_versioned` (optional): Bool to enable versioning in bucket for tamr
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| project\_id | project id for the buckets to be placed into | `string` | n/a | yes |
+| bucket\_locations | Location for the buckets, default is `US` | `string` | `"US"` | no |
+| labels | labels to be attached to the bucket | `map(string)` | <pre>{<br>  "product": "external_tamr"<br>}</pre> | no |
+| tamr\_home\_versioned | Bool to enable versioning in bucket for tamr | `bool` | `true` | no |
 
 ## Outputs
-Write your Terraform module outputs.
-* `tamr_bucket_name`: name of the bucket created for tamr
-* `dataproc_bucket_name`: name of the bucket created for dataproc
+
+| Name | Description |
+|------|-------------|
+| dataproc\_bucket\_name | n/a |
+| tamr\_bucket\_name | n/a |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 # References
 This repo is based on:
