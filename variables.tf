@@ -18,8 +18,38 @@ variable "bucket_locations" {
   default     = "US"
 }
 
-variable "tamr_home_versioned" {
-  type        = bool
-  description = "Bool to enable versioning in bucket for tamr"
-  default     = true
+variable "bucket_write_members" {
+  type        = list(string)
+  description = "The list of members to give write access to dataproc and tamr home buckets"
+  default     = []
+}
+
+variable "bucket_read_members" {
+  type        = list(string)
+  description = "The list of members to give write access to dataproc and tamr home buckets"
+  default     = []
+}
+
+variable "dataproc_bucket_write_members" {
+  type        = list(string)
+  description = "The list of members to give write access to dataproc bucket"
+  default     = []
+}
+
+variable "dataproc_bucket_read_members" {
+  type        = list(string)
+  description = "The list of members to give read access to dataproc bucket"
+  default     = []
+}
+
+variable "tamr_home_bucket_write_members" {
+  type        = list(string)
+  description = "The list of members to give write access to tamr home bucket"
+  default     = []
+}
+
+variable "tamr_home_bucket_read_members" {
+  type        = list(string)
+  description = "The list of members to give read access to tamr home bucket"
+  default     = []
 }
