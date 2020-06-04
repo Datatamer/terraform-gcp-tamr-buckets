@@ -36,8 +36,13 @@ module "minimal" {
 |------|-------------|------|---------|:--------:|
 | project\_id | project id for the buckets to be placed into | `string` | n/a | yes |
 | bucket\_locations | Location for the buckets, default is `US` | `string` | `"US"` | no |
+| bucket\_read\_members | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
+| bucket\_write\_members | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
+| dataproc\_bucket\_read\_members | The list of members to give read access to dataproc bucket | `list(string)` | `[]` | no |
+| dataproc\_bucket\_write\_members | The list of members to give write access to dataproc bucket | `list(string)` | `[]` | no |
 | labels | labels to be attached to the bucket | `map(string)` | <pre>{<br>  "product": "external_tamr"<br>}</pre> | no |
-| tamr\_home\_versioned | Bool to enable versioning in bucket for tamr | `bool` | `true` | no |
+| tamr\_home\_bucket\_read\_members | The list of members to give read access to tamr home bucket | `list(string)` | `[]` | no |
+| tamr\_home\_bucket\_write\_members | The list of members to give write access to tamr home bucket | `list(string)` | `[]` | no |
 
 ## Outputs
 

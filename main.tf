@@ -1,3 +1,10 @@
+locals {
+  dataproc_bucket_write_members  = concat(var.bucket_write_members, var.dataproc_bucket_write_members)
+  dataproc_bucket_read_members   = concat(var.bucket_read_members, var.dataproc_bucket_read_members)
+  tamr_home_bucket_write_members = concat(var.bucket_write_members, var.tamr_home_bucket_write_members)
+  tamr_home_bucket_read_members  = concat(var.bucket_read_members, var.tamr_home_bucket_read_members)
+}
+
 # bucket meant for tamr home
 resource "google_storage_bucket" "tamr_bucket" {
   name     = "${var.project_id}-tamr-home"
@@ -5,37 +12,27 @@ resource "google_storage_bucket" "tamr_bucket" {
   project  = var.project_id
 
   versioning {
-    enabled = var.tamr_home_versioned
+    enabled = false
   }
 
   labels = var.labels
 }
 
-resource "google_storage_bucket_iam_binding" "bucket_write" {
+resource "google_storage_bucket_iam_member" "bucket_write" {
+  count  = length(local.tamr_home_bucket_write_members)
   bucket = google_storage_bucket.tamr_bucket.name
   role   = "roles/storage.legacyBucketWriter"
-
-  members = [
-    "group:gce-admin@tamr.com",
-    "group:${var.project_id}-user@tamr.com",
-    "serviceAccount:tsc-instance@${var.project_id}.iam.gserviceaccount.com",
-  ]
+  member = local.tamr_home_bucket_write_members[count.index]
 }
 
-resource "google_storage_bucket_iam_binding" "bucket_read_regular" {
+resource "google_storage_bucket_iam_member" "bucket_read_regular" {
+  count  = length(local.tamr_home_bucket_read_members)
   bucket = google_storage_bucket.tamr_bucket.name
   role   = "roles/storage.objectViewer"
-
-  members = [
-    "group:gce-admin@tamr.com",
-    "group:${var.project_id}-user@tamr.com",
-    "group:${var.project_id}-readonly@tamr.com",
-    "serviceAccount:tsc-instance@${var.project_id}.iam.gserviceaccount.com",
-    "serviceAccount:k8s-workers@${var.project_id}.iam.gserviceaccount.com",
-  ]
+  member = local.tamr_home_bucket_read_members[count.index]
 }
 
-# bucket for dataproc to use, note the no versioning
+# bucket for dataproc to use
 resource "google_storage_bucket" "tamr_dataproc_bucket" {
   name     = "${var.project_id}-dataproc-home"
   location = var.bucket_locations
@@ -48,26 +45,16 @@ resource "google_storage_bucket" "tamr_dataproc_bucket" {
   labels = var.labels
 }
 
-resource "google_storage_bucket_iam_binding" "dataproc_bucket_write" {
+resource "google_storage_bucket_iam_member" "dataproc_bucket_write" {
+  count  = length(local.dataproc_bucket_write_members)
   bucket = google_storage_bucket.tamr_dataproc_bucket.name
   role   = "roles/storage.legacyBucketWriter"
-
-  members = [
-    "group:gce-admin@tamr.com",
-    "group:${var.project_id}-user@tamr.com",
-    "serviceAccount:tsc-instance@${var.project_id}.iam.gserviceaccount.com",
-  ]
+  member = local.dataproc_bucket_write_members[count.index]
 }
 
-resource "google_storage_bucket_iam_binding" "dataproc_bucket_read_regular" {
+resource "google_storage_bucket_iam_member" "dataproc_bucket_read_regular" {
+  count  = length(local.dataproc_bucket_read_members)
   bucket = google_storage_bucket.tamr_dataproc_bucket.name
   role   = "roles/storage.objectViewer"
-
-  members = [
-    "group:gce-admin@tamr.com",
-    "group:${var.project_id}-user@tamr.com",
-    "group:${var.project_id}-readonly@tamr.com",
-    "serviceAccount:tsc-instance@${var.project_id}.iam.gserviceaccount.com",
-    "serviceAccount:k8s-workers@${var.project_id}.iam.gserviceaccount.com",
-  ]
+  member = local.dataproc_bucket_read_members[count.index]
 }
