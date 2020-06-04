@@ -185,16 +185,6 @@ _lint_fmt:
 		exit 1; \
 	fi;
 	@echo "------------------------------------------------------------"
-	@echo "# tfsec"
-	@echo "------------------------------------------------------------"
-	@if docker run --rm -v "$(CURRENT_DIR):/workdir:ro" --workdir "/workdir" tamr-docker.jfrog.io/ops/tfsec:v0.19.0 . ; then \
-		echo "OK"; \
-	else \
-		echo "Failed"; \
-		exit 1; \
-	fi;
-	@echo
-	@echo "------------------------------------------------------------"
 	@echo "# *.tfvars files"
 	@echo "------------------------------------------------------------"
 	@if docker run --rm --entrypoint=/bin/sh -v "$(CURRENT_DIR)/terraform:/t:ro" hashicorp/terraform:$(TF_VERSION) \
