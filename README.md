@@ -16,6 +16,7 @@ module "minimal" {
 
 # Resources Created
 * two gcs buckets and associated iam policies
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -57,3 +58,19 @@ module "minimal" {
 This repo is based on:
 * [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure)
 * [templated terraform module](https://github.com/tmknom/template-terraform-module)
+
+# Development
+## Generating Docs
+Run `make terraform/docs` to generate the section of docs around terraform inputs, outputs and requirements.
+
+## Checkstyles
+Run `make lint`, this will run terraform fmt, in addition to a few other checks to detect whitespace issues.
+NOTE: this requires having docker working on the machine running the test
+
+## Releasing new versions
+* Update version contained in `VERSION`
+* Document changes in `CHANGELOG.md`
+* Create a tag in github for the commit associated with the version
+
+# License
+Apache 2 Licensed. See LICENSE for full details.
