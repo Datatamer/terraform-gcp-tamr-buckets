@@ -4,7 +4,7 @@ locals {
   tamr_home_bucket_write_members = concat(var.bucket_write_members, var.tamr_home_bucket_write_members)
   tamr_home_bucket_read_members  = concat(var.bucket_read_members, var.tamr_home_bucket_read_members)
 
-  bucket_prefix = bucket_name_prefix == "" ? var.project_id : var.bucket_name_prefix
+  bucket_prefix = var.bucket_name_prefix == "" ? var.project_id : var.bucket_name_prefix
 }
 
 # bucket meant for tamr home
