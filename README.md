@@ -37,6 +37,7 @@ module "minimal" {
 |------|-------------|------|---------|:--------:|
 | project\_id | project id for the buckets to be placed into | `string` | n/a | yes |
 | bucket\_locations | Location for the buckets, default is `US` | `string` | `"US"` | no |
+| bucket\_name\_prefix | prefix to name the buckets | `string` | `""` | no |
 | bucket\_read\_members | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
 | bucket\_write\_members | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
 | dataproc\_bucket\_read\_members | The list of members to give read access to dataproc bucket | `list(string)` | `[]` | no |
