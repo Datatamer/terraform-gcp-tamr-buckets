@@ -3,6 +3,12 @@ variable "project_id" {
   description = "project id for the buckets to be placed into"
 }
 
+variable "bucket_name_prefix" {
+  default     = ""
+  type        = string
+  description = "prefix to name the buckets"
+}
+
 variable "labels" {
   type        = map(string)
   description = "labels to be attached to the bucket"
