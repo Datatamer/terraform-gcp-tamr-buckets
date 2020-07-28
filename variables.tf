@@ -59,3 +59,9 @@ variable "tamr_home_bucket_read_members" {
   description = "The list of members to give read access to tamr home bucket"
   default     = []
 }
+
+variable "force_destroy" {
+  default     = false
+  type        = bool
+  description = "force destroy potentially persistent buckets"
+}

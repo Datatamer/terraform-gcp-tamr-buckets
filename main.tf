@@ -17,6 +17,8 @@ resource "google_storage_bucket" "tamr_bucket" {
     enabled = false
   }
 
+  force_destroy = var.force_destroy
+
   labels = var.labels
 }
 
@@ -43,6 +45,8 @@ resource "google_storage_bucket" "tamr_dataproc_bucket" {
   versioning {
     enabled = false
   }
+
+  force_destroy = var.force_destroy
 
   labels = var.labels
 }
