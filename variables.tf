@@ -61,7 +61,7 @@ variable "tamr_home_bucket_read_members" {
 }
 
 variable "force_destroy" {
-  default     = false
+  default     = true
   type        = bool
   description = "force destroy potentially persistent buckets"
 }
