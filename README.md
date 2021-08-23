@@ -40,10 +40,12 @@ module "minimal" {
 | bucket\_name\_prefix | prefix to name the buckets | `string` | `""` | no |
 | bucket\_read\_members | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
 | bucket\_write\_members | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
+| dataproc\_bucket\_name\_suffix | suffix for the name of the dataproc bucket | `string` | `"-dataproc-home"` | no |
 | dataproc\_bucket\_read\_members | The list of members to give read access to dataproc bucket | `list(string)` | `[]` | no |
 | dataproc\_bucket\_write\_members | The list of members to give write access to dataproc bucket | `list(string)` | `[]` | no |
 | force\_destroy | force destroy potentially persistent buckets | `bool` | `false` | no |
 | labels | labels to be attached to the bucket | `map(string)` | <pre>{<br>  "product": "external_tamr"<br>}</pre> | no |
+| tamr\_bucket\_name\_suffix | suffix for the name of the Tamr bucket | `string` | `"-tamr-home"` | no |
 | tamr\_home\_bucket\_read\_members | The list of members to give read access to tamr home bucket | `list(string)` | `[]` | no |
 | tamr\_home\_bucket\_write\_members | The list of members to give write access to tamr home bucket | `list(string)` | `[]` | no |
 

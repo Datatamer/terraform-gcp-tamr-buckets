@@ -4,12 +4,14 @@ locals {
   tamr_home_bucket_write_members = concat(var.bucket_write_members, var.tamr_home_bucket_write_members)
   tamr_home_bucket_read_members  = concat(var.bucket_read_members, var.tamr_home_bucket_read_members)
 
-  bucket_prefix = var.bucket_name_prefix == "" ? var.project_id : var.bucket_name_prefix
+  bucket_prefix        = var.bucket_name_prefix == "" ? var.project_id : var.bucket_name_prefix
+  tamr_bucket_name     = format("%s%s", local.bucket_prefix, var.tamr_bucket_name_suffix)
+  dataproc_bucket_name = format("%s%s", local.bucket_prefix, var.dataproc_bucket_name_suffix)
 }
 
 # bucket meant for tamr home
 resource "google_storage_bucket" "tamr_bucket" {
-  name     = "${local.bucket_prefix}-tamr-home"
+  name     = local.tamr_bucket_name
   location = var.bucket_locations
   project  = var.project_id
 
@@ -38,7 +40,7 @@ resource "google_storage_bucket_iam_member" "bucket_read_regular" {
 
 # bucket for dataproc to use
 resource "google_storage_bucket" "tamr_dataproc_bucket" {
-  name     = "${local.bucket_prefix}-dataproc-home"
+  name     = local.dataproc_bucket_name
   location = var.bucket_locations
   project  = var.project_id
 
