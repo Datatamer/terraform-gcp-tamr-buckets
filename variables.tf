@@ -9,6 +9,18 @@ variable "bucket_name_prefix" {
   description = "prefix to name the buckets"
 }
 
+variable "tamr_bucket_name_suffix" {
+  default     = "-tamr-home"
+  type        = string
+  description = "suffix for the name of the Tamr bucket"
+}
+
+variable "dataproc_bucket_name_suffix" {
+  default     = "-dataproc-home"
+  type        = string
+  description = "suffix for the name of the dataproc bucket"
+}
+
 variable "labels" {
   type        = map(string)
   description = "labels to be attached to the bucket"
