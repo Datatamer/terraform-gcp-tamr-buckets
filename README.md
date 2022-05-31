@@ -20,16 +20,16 @@ module "minimal" {
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-| Name | Version   |
-|------|-----------|
-| terraform | >= 1.0.0  |
-| google | >= 3.18.0 |
+| Name | Version |
+|------|---------|
+| terraform | >= 1.0.0 |
+| google | >= 4.6.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| google | >= 3.18.0 |
+| google | >= 4.6.0 |
 
 ## Inputs
 
