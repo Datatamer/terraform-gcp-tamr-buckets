@@ -16,9 +16,25 @@ resource "google_storage_bucket" "tamr_bucket" {
   project  = var.project_id
 
   versioning {
-    enabled = false
+    enabled = var.versioning_enabled
   }
 
+  # see: https://cloud.google.com/storage/docs/lifecycle
+  #
+  # this deletes GCS objects when these conditions are satisfied
+  # - there are current + 5 versions ahead of the object.
+  # - the object has been a noncurrent version for at least 32 days (at least one month)
+  #
+  # These values are not variables on purpose. These shouldn't need to change unless our retention policies change.
+  lifecycle_rule {
+    condition {
+      num_newer_versions         = 6
+      days_since_noncurrent_time = 32
+    }
+    action {
+      type = "Delete"
+    }
+  }
   force_destroy = var.force_destroy
 
   labels = var.labels
