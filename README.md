@@ -4,15 +4,9 @@ This module is used to create the recommend gcs bucket setup for a tamr instance
 This repo follows the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
 
 # Examples
-## Basic
-Inline example implementation of the module.  This is the most basic example of what it would look like to use this module.
-```
-module "minimal" {
-  source = "./gcp-tamr-buckets"
-
-  project = "tamr-foo-bar"
-}
-```
+## Minimal
+This is the most basic example of what it would look like to use this module
+- [Minimal](https://github.com/Datatamer/terraform-gcp-tamr-buckets/tree/master/examples/minimal)
 
 # Resources Created
 * two gcs buckets and associated iam policies
@@ -23,13 +17,13 @@ module "minimal" {
 | Name | Version |
 |------|---------|
 | terraform | >= 1.0.0 |
-| google | >= 4.6.0 |
+| google | >= 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| google | >= 4.6.0 |
+| google | >= 4.0 |
 
 ## Inputs
 
