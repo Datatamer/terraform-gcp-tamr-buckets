@@ -77,3 +77,9 @@ variable "force_destroy" {
   type        = bool
   description = "force destroy potentially persistent buckets"
 }
+
+variable "lifecycle_rule" {
+  default     = false
+  type        = bool
+  description = "Set lifecycle rule to move objects to nearline storage after 23 days and delete the objects after 90 days"
+}
