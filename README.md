@@ -23,13 +23,13 @@ module "minimal" {
 | Name | Version |
 |------|---------|
 | terraform | >= 1.0.0 |
-| google | >= 4.6.0 |
+| google | >= 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| google | >= 4.6.0 |
+| google | >= 4.0 |
 
 ## Inputs
 
@@ -48,6 +48,7 @@ module "minimal" {
 | tamr\_bucket\_name\_suffix | suffix for the name of the Tamr bucket | `string` | `"-tamr-home"` | no |
 | tamr\_home\_bucket\_read\_members | The list of members to give read access to tamr home bucket | `list(string)` | `[]` | no |
 | tamr\_home\_bucket\_write\_members | The list of members to give write access to tamr home bucket | `list(string)` | `[]` | no |
+| versioning\_enabled | whether to enable object versioning on this bucket | `bool` | `true` | no |
 
 ## Outputs
 

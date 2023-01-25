@@ -77,3 +77,9 @@ variable "force_destroy" {
   type        = bool
   description = "force destroy potentially persistent buckets"
 }
+
+variable "versioning_enabled" {
+  default     = true
+  type        = bool
+  description = "whether to enable object versioning on this bucket"
+}
