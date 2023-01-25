@@ -7,7 +7,8 @@ locals {
   bucket_prefix        = var.bucket_name_prefix == "" ? var.project_id : var.bucket_name_prefix
   tamr_bucket_name     = format("%s%s", local.bucket_prefix, var.tamr_bucket_name_suffix)
   dataproc_bucket_name = format("%s%s", local.bucket_prefix, var.dataproc_bucket_name_suffix)
-  count                = var.lifecycle_rule ? 1 : 0
+  delete_enabled       = var.lifecycle_delete ? 1 : 0
+  nearline_enabled     = var.lifecycle_nearline ? 1 : 0
 }
 
 # bucket meant for tamr home
@@ -21,12 +22,10 @@ resource "google_storage_bucket" "tamr_bucket" {
   }
 
   dynamic "lifecycle_rule" {
-    for_each = local.count
+    for_each = local.delete_enabled
     content {
-      # after 90 days delete
       condition {
-        # note this in days
-        age = "90"
+        age = var.lifecycle_delete_days
       }
       action {
         type = "Delete"
@@ -35,12 +34,10 @@ resource "google_storage_bucket" "tamr_bucket" {
   }
 
   dynamic "lifecycle_rule" {
-    for_each = local.count
+    for_each = local.nearline_enabled
     content {
-      # after 23 days move to near line
       condition {
-        # note this in days
-        age = "23"
+        age = var.lifecycle_nearline_days
       }
       action {
         # see https://cloud.google.com/storage/docs/storage-classes
