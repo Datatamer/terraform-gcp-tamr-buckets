@@ -18,14 +18,15 @@ resource "google_storage_bucket" "tamr_bucket" {
   project  = var.project_id
 
   versioning {
-    enabled = false
+    enabled = var.versioning_enabled
   }
 
   dynamic "lifecycle_rule" {
     for_each = local.delete_enabled
     content {
       condition {
-        age = var.lifecycle_delete_days
+        num_newer_versions         = 2
+        days_since_noncurrent_time = var.lifecycle_delete_days
       }
       action {
         type = "Delete"

@@ -100,4 +100,9 @@ variable "lifecycle_nearline_days" {
   default     = 23
   type        = number
   description = "If \$\{lifecycle_nearline\} is true, move objects to nearline storage after this many days"
+
+variable "versioning_enabled" {
+  default     = true
+  type        = bool
+  description = "whether to enable object versioning on this bucket"
 }

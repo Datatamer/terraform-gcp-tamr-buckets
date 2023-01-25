@@ -42,6 +42,7 @@ This is the most basic example of what it would look like to use this module
 | tamr\_bucket\_name\_suffix | suffix for the name of the Tamr bucket | `string` | `"-tamr-home"` | no |
 | tamr\_home\_bucket\_read\_members | The list of members to give read access to tamr home bucket | `list(string)` | `[]` | no |
 | tamr\_home\_bucket\_write\_members | The list of members to give write access to tamr home bucket | `list(string)` | `[]` | no |
+| versioning\_enabled | whether to enable object versioning on this bucket | `bool` | `true` | no |
 
 ## Outputs
 
