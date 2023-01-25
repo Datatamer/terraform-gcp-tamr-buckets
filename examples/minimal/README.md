@@ -9,7 +9,10 @@ No provider.
 
 ## Inputs
 
-No input.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| bucket\_name\_prefix | n/a | `string` | n/a | yes |
+| project\_id | n/a | `string` | n/a | yes |
 
 ## Outputs
 

@@ -39,6 +39,11 @@ This is the most basic example of what it would look like to use this module
 | dataproc\_bucket\_write\_members | The list of members to give write access to dataproc bucket | `list(string)` | `[]` | no |
 | force\_destroy | force destroy potentially persistent buckets | `bool` | `false` | no |
 | labels | labels to be attached to the bucket | `map(string)` | <pre>{<br>  "product": "external_tamr"<br>}</pre> | no |
+| lifecycle\_delete | Set lifecycle rule to delete all objects after lifecycle\_delete\_days days | `bool` | `false` | no |
+| lifecycle\_delete\_days | If lifecycle\_delete is true, delete objects after this many days | `number` | `90` | no |
+| lifecycle\_delete\_noncurrent | Set lifecycle rule to delete non-current objects after lifecycle\_delete\_days days | `bool` | `true` | no |
+| lifecycle\_nearline | Set lifecycle rule to move the objects to nearline storage after lifecycle\_nearline\_days days | `bool` | `true` | no |
+| lifecycle\_nearline\_days | If lifecycle\_nearline is true, move objects to nearline storage after this many days | `number` | `23` | no |
 | tamr\_bucket\_name\_suffix | suffix for the name of the Tamr bucket | `string` | `"-tamr-home"` | no |
 | tamr\_home\_bucket\_read\_members | The list of members to give read access to tamr home bucket | `list(string)` | `[]` | no |
 | tamr\_home\_bucket\_write\_members | The list of members to give write access to tamr home bucket | `list(string)` | `[]` | no |
