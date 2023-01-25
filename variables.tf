@@ -77,3 +77,39 @@ variable "force_destroy" {
   type        = bool
   description = "force destroy potentially persistent buckets"
 }
+
+variable "lifecycle_delete" {
+  default     = false
+  type        = bool
+  description = "Set lifecycle rule to delete all objects after lifecycle_delete_days days"
+}
+
+variable "lifecycle_delete_noncurrent" {
+  default     = false
+  type        = bool
+  description = "Set lifecycle rule to delete non-current objects after lifecycle_delete_days days"
+}
+
+variable "lifecycle_delete_days" {
+  default     = 90
+  type        = number
+  description = "If lifecycle_delete is true, delete objects after this many days"
+}
+
+variable "lifecycle_nearline" {
+  default     = false
+  type        = bool
+  description = "Set lifecycle rule to move the objects to nearline storage after lifecycle_nearline_days days"
+}
+
+variable "lifecycle_nearline_days" {
+  default     = 23
+  type        = number
+  description = "If lifecycle_nearline is true, move objects to nearline storage after this many days"
+}
+
+variable "versioning_enabled" {
+  default     = false
+  type        = bool
+  description = "whether to enable object versioning on this bucket"
+}
