@@ -1,81 +1,60 @@
-# Tamr GCS Bucket Module
-This module is used to create the recommend gcs bucket setup for a tamr instance deployed into a single tenant gcp project.
-
-This repo follows the [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure).
-
-# Examples
-## Minimal
-This is the most basic example of what it would look like to use this module
-- [Minimal](https://github.com/Datatamer/terraform-gcp-tamr-buckets/tree/master/examples/minimal)
-
-# Resources Created
-* two gcs buckets and associated iam policies
-
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| terraform | >= 1.0.0 |
-| google | >= 4.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >= 5.0, <6.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| google | >= 4.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | >= 5.0, <6.0.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [google_storage_bucket.tamr_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
+| [google_storage_bucket.tamr_dataproc_bucket](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket) | resource |
+| [google_storage_bucket_iam_member.bucket_read_regular](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
+| [google_storage_bucket_iam_member.bucket_write](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
+| [google_storage_bucket_iam_member.dataproc_bucket_read_regular](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
+| [google_storage_bucket_iam_member.dataproc_bucket_write](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_iam_member) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| project\_id | project id for the buckets to be placed into | `string` | n/a | yes |
-| bucket\_locations | Location for the buckets, default is `US` | `string` | `"US"` | no |
-| bucket\_name\_prefix | prefix to name the buckets | `string` | `""` | no |
-| bucket\_read\_members | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
-| bucket\_write\_members | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
-| dataproc\_bucket\_name\_suffix | suffix for the name of the dataproc bucket | `string` | `"-dataproc-home"` | no |
-| dataproc\_bucket\_read\_members | The list of members to give read access to dataproc bucket | `list(string)` | `[]` | no |
-| dataproc\_bucket\_write\_members | The list of members to give write access to dataproc bucket | `list(string)` | `[]` | no |
-| force\_destroy | force destroy potentially persistent buckets | `bool` | `false` | no |
-| labels | labels to be attached to the bucket | `map(string)` | <pre>{<br>  "product": "external_tamr"<br>}</pre> | no |
-| lifecycle\_delete | Set lifecycle rule to delete all objects after lifecycle\_delete\_days days | `bool` | `false` | no |
-| lifecycle\_delete\_days | If lifecycle\_delete is true, delete objects after this many days | `number` | `90` | no |
-| lifecycle\_delete\_noncurrent | Set lifecycle rule to delete non-current objects after lifecycle\_delete\_days days | `bool` | `true` | no |
-| lifecycle\_nearline | Set lifecycle rule to move the objects to nearline storage after lifecycle\_nearline\_days days | `bool` | `true` | no |
-| lifecycle\_nearline\_days | If lifecycle\_nearline is true, move objects to nearline storage after this many days | `number` | `23` | no |
-| tamr\_bucket\_name\_suffix | suffix for the name of the Tamr bucket | `string` | `"-tamr-home"` | no |
-| tamr\_home\_bucket\_read\_members | The list of members to give read access to tamr home bucket | `list(string)` | `[]` | no |
-| tamr\_home\_bucket\_write\_members | The list of members to give write access to tamr home bucket | `list(string)` | `[]` | no |
-| versioning\_enabled | whether to enable object versioning on this bucket | `bool` | `true` | no |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | project id for the buckets to be placed into | `string` | n/a | yes |
+| <a name="input_bucket_locations"></a> [bucket\_locations](#input\_bucket\_locations) | Location for the buckets, default is `US` | `string` | `"US"` | no |
+| <a name="input_bucket_name_prefix"></a> [bucket\_name\_prefix](#input\_bucket\_name\_prefix) | prefix to name the buckets | `string` | `""` | no |
+| <a name="input_bucket_read_members"></a> [bucket\_read\_members](#input\_bucket\_read\_members) | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
+| <a name="input_bucket_write_members"></a> [bucket\_write\_members](#input\_bucket\_write\_members) | The list of members to give write access to dataproc and tamr home buckets | `list(string)` | `[]` | no |
+| <a name="input_dataproc_bucket_name_suffix"></a> [dataproc\_bucket\_name\_suffix](#input\_dataproc\_bucket\_name\_suffix) | suffix for the name of the dataproc bucket | `string` | `"-dataproc-home"` | no |
+| <a name="input_dataproc_bucket_read_members"></a> [dataproc\_bucket\_read\_members](#input\_dataproc\_bucket\_read\_members) | The list of members to give read access to dataproc bucket | `list(string)` | `[]` | no |
+| <a name="input_dataproc_bucket_write_members"></a> [dataproc\_bucket\_write\_members](#input\_dataproc\_bucket\_write\_members) | The list of members to give write access to dataproc bucket | `list(string)` | `[]` | no |
+| <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | force destroy potentially persistent buckets | `bool` | `false` | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | labels to be attached to the bucket | `map(string)` | <pre>{<br>  "product": "external_tamr"<br>}</pre> | no |
+| <a name="input_lifecycle_delete"></a> [lifecycle\_delete](#input\_lifecycle\_delete) | Set lifecycle rule to delete all objects after lifecycle\_delete\_days days | `bool` | `false` | no |
+| <a name="input_lifecycle_delete_days"></a> [lifecycle\_delete\_days](#input\_lifecycle\_delete\_days) | If lifecycle\_delete is true, delete objects after this many days | `number` | `90` | no |
+| <a name="input_lifecycle_delete_noncurrent"></a> [lifecycle\_delete\_noncurrent](#input\_lifecycle\_delete\_noncurrent) | Set lifecycle rule to delete non-current objects after lifecycle\_delete\_days days | `bool` | `false` | no |
+| <a name="input_lifecycle_nearline"></a> [lifecycle\_nearline](#input\_lifecycle\_nearline) | Set lifecycle rule to move the objects to nearline storage after lifecycle\_nearline\_days days | `bool` | `false` | no |
+| <a name="input_lifecycle_nearline_days"></a> [lifecycle\_nearline\_days](#input\_lifecycle\_nearline\_days) | If lifecycle\_nearline is true, move objects to nearline storage after this many days | `number` | `23` | no |
+| <a name="input_tamr_bucket_name_suffix"></a> [tamr\_bucket\_name\_suffix](#input\_tamr\_bucket\_name\_suffix) | suffix for the name of the Tamr bucket | `string` | `"-tamr-home"` | no |
+| <a name="input_tamr_home_bucket_read_members"></a> [tamr\_home\_bucket\_read\_members](#input\_tamr\_home\_bucket\_read\_members) | The list of members to give read access to tamr home bucket | `list(string)` | `[]` | no |
+| <a name="input_tamr_home_bucket_write_members"></a> [tamr\_home\_bucket\_write\_members](#input\_tamr\_home\_bucket\_write\_members) | The list of members to give write access to tamr home bucket | `list(string)` | `[]` | no |
+| <a name="input_versioning_enabled"></a> [versioning\_enabled](#input\_versioning\_enabled) | whether to enable object versioning on this bucket | `bool` | `false` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| dataproc\_bucket\_name | n/a |
-| tamr\_bucket\_name | n/a |
-
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-# References
-This repo is based on:
-* [terraform standard module structure](https://www.terraform.io/docs/modules/index.html#standard-module-structure)
-* [templated terraform module](https://github.com/tmknom/template-terraform-module)
-
-# Development
-## Generating Docs
-Run `make terraform/docs` to generate the section of docs around terraform inputs, outputs and requirements.
-
-## Checkstyles
-Run `make lint`, this will run terraform fmt, in addition to a few other checks to detect whitespace issues.
-NOTE: this requires having docker working on the machine running the test
-
-## Releasing new versions
-* Update version contained in `VERSION`
-* Document changes in `CHANGELOG.md`
-* Create a tag in github for the commit associated with the version
-
-# License
-Apache 2 Licensed. See LICENSE for full details.
-
+| <a name="output_dataproc_bucket_name"></a> [dataproc\_bucket\_name](#output\_dataproc\_bucket\_name) | n/a |
+| <a name="output_tamr_bucket_name"></a> [tamr\_bucket\_name](#output\_tamr\_bucket\_name) | n/a |
+<!-- END_TF_DOCS -->
