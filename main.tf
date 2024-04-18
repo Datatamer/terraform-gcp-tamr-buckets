@@ -97,6 +97,10 @@ resource "google_storage_bucket" "tamr_dataproc_bucket" {
     enabled = false
   }
 
+  encryption {
+    default_kms_key_name = var.gcs_kms_key_self_link
+  }
+
   force_destroy = var.force_destroy
 
   labels = var.labels
