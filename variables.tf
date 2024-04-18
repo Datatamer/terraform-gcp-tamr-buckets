@@ -113,3 +113,9 @@ variable "versioning_enabled" {
   type        = bool
   description = "whether to enable object versioning on this bucket"
 }
+
+variable "gcs_kms_key_self_link" {
+  type        = string
+  description = "The full path to the encryption key used for gcs bucket."
+  default     = ""
+}
