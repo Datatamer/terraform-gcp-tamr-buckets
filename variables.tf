@@ -96,6 +96,12 @@ variable "lifecycle_delete_days" {
   description = "If lifecycle_delete is true, delete objects after this many days"
 }
 
+variable "lifecycle_delete_prefix" {
+  default     = []
+  type        = list(string)
+  description = "Object prefixes to apply the lifecycle rule to for delete rule."
+}
+
 variable "lifecycle_nearline" {
   default     = false
   type        = bool
@@ -106,6 +112,12 @@ variable "lifecycle_nearline_days" {
   default     = 23
   type        = number
   description = "If lifecycle_nearline is true, move objects to nearline storage after this many days"
+}
+
+variable "lifecycle_nearline_prefix" {
+  default     = []
+  type        = list(string)
+  description = "Object prefixes to apply the lifecycle rule to for nearline storage rule."
 }
 
 variable "versioning_enabled" {
