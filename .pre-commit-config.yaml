@@ -1,0 +1,43 @@
+repos:
+# General Hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.2
+    hooks:
+      - id: gitleaks
+        # NOTE: this is the command we are running in the jenkins check so it should be identical
+        # https://github.com/Datatamer/jenkins-ops-pipelines/blob/main/pipelines/git-leaks.groovy#L73
+        entry: gitleaks detect -v
+# terraform hooks
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.89.1 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_docs
+        args:
+          - --hook-config=--output-file=README.md
+          - --hook-config=--output-mode=replace
+          - --hook-config=--sort-by=required
+          - --hook-config=md
+
+# Git specific hooks
+  - repo: https://github.com/jorisroovers/gitlint
+    rev:  v0.19.1 # Fill in a tag / sha here (e.g. v0.19.1)
+    hooks:
+      - id: gitlint
+        # NOTE: this configuration is meant to match the noticable difference in the rules
+        # between gitlint https://jorisroovers.com/gitlint/latest/rules/builtin_rules/
+        # and convential commit: https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+        args:
+          - "--debug"
+          - "--ignore=body-is-missing,T3"
+          - "-c"
+          - "T1.line-length=100"
+          - "-c"
+          - "CT1.types=MINOR,MAJOR,PATCH"
+          - "--msg-filename"
