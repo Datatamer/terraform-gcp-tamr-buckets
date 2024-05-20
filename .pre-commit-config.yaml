@@ -19,11 +19,9 @@ repos:
     hooks:
       - id: terraform_fmt
       - id: terraform_docs
+        always_run: true
         args:
-          - --hook-config=--output-file=README.md
-          - --hook-config=--output-mode=replace
-          - --hook-config=--sort-by=required
-          - --hook-config=md
+          - markdown --output-file README.md --output-mode replace --sort-by required .
 
 # Git specific hooks
   - repo: https://github.com/jorisroovers/gitlint
