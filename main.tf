@@ -27,7 +27,8 @@ resource "google_storage_bucket" "tamr_bucket" {
     for_each = local.delete_enabled
     content {
       condition {
-        age = var.lifecycle_delete_days
+        age            = var.lifecycle_delete_days
+        matches_prefix = var.lifecycle_delete_prefix
       }
       action {
         type = "Delete"
@@ -54,7 +55,8 @@ resource "google_storage_bucket" "tamr_bucket" {
     for_each = local.nearline_enabled
     content {
       condition {
-        age = var.lifecycle_nearline_days
+        age            = var.lifecycle_nearline_days
+        matches_prefix = var.lifecycle_nearline_prefix
       }
       action {
         # see https://cloud.google.com/storage/docs/storage-classes
