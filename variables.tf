@@ -120,6 +120,12 @@ variable "lifecycle_nearline_prefix" {
   description = "Object prefixes to apply the lifecycle rule to for nearline storage rule."
 }
 
+variable "number_newer_versions" {
+  default     = 2
+  type        = number
+  description = "number of newer versions of noncurrent objects"
+}
+
 variable "versioning_enabled" {
   default     = false
   type        = bool

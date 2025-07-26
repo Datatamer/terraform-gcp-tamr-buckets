@@ -24,12 +24,12 @@ resource "google_storage_bucket" "tamr_bucket" {
   }
 
   # this rule deletes NONCURRENT versions after X days.
-  # this will always keep 2 versions of the file around.
+  # this will always keep N versions of the file around.
   dynamic "lifecycle_rule" {
     for_each = local.delete_noncurrent_enabled
     content {
       condition {
-        num_newer_versions         = 2
+        num_newer_versions         = var.number_newer_versions
         days_since_noncurrent_time = var.lifecycle_delete_days
       }
       action {
