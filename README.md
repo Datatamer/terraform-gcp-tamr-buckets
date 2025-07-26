@@ -105,6 +105,12 @@ No modules.
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | force destroy potentially persistent buckets | `bool` | `false` | no |
 | <a name="input_gcs_kms_key_self_link"></a> [gcs\_kms\_key\_self\_link](#input\_gcs\_kms\_key\_self\_link) | The full path to the encryption key used for gcs bucket. | `string` | `""` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | labels to be attached to the bucket | `map(string)` | <pre>{<br>  "product": "external_tamr"<br>}</pre> | no |
+| <a name="input_lifecycle_archive"></a> [lifecycle\_archive](#input\_lifecycle\_archive) | Set lifecycle rule to move the objects to archive storage after lifecycle\_archive\_days days | `bool` | `false` | no |
+| <a name="input_lifecycle_archive_days"></a> [lifecycle\_archive\_days](#input\_lifecycle\_archive\_days) | If lifecycle\_archive is true, move objects to archive storage after this many days | `number` | `90` | no |
+| <a name="input_lifecycle_archive_prefix"></a> [lifecycle\_archive\_prefix](#input\_lifecycle\_archive\_prefix) | Object prefixes to apply the lifecycle rule to for archive storage rule. | `list(string)` | `[]` | no |
+| <a name="input_lifecycle_coldline"></a> [lifecycle\_coldline](#input\_lifecycle\_coldline) | Set lifecycle rule to move the objects to coldline storage after lifecycle\_coldline\_days days | `bool` | `false` | no |
+| <a name="input_lifecycle_coldline_days"></a> [lifecycle\_coldline\_days](#input\_lifecycle\_coldline\_days) | If lifecycle\_coldline is true, move objects to coldline storage after this many days | `number` | `30` | no |
+| <a name="input_lifecycle_coldline_prefix"></a> [lifecycle\_coldline\_prefix](#input\_lifecycle\_coldline\_prefix) | Object prefixes to apply the lifecycle rule to for coldline storage rule. | `list(string)` | `[]` | no |
 | <a name="input_lifecycle_delete"></a> [lifecycle\_delete](#input\_lifecycle\_delete) | Set lifecycle rule to delete all objects after lifecycle\_delete\_days days | `bool` | `false` | no |
 | <a name="input_lifecycle_delete_days"></a> [lifecycle\_delete\_days](#input\_lifecycle\_delete\_days) | If lifecycle\_delete is true, delete objects after this many days | `number` | `90` | no |
 | <a name="input_lifecycle_delete_noncurrent"></a> [lifecycle\_delete\_noncurrent](#input\_lifecycle\_delete\_noncurrent) | Set lifecycle rule to delete non-current objects after lifecycle\_delete\_days days | `bool` | `false` | no |

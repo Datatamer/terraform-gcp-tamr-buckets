@@ -8,5 +8,7 @@ locals {
   dataproc_bucket_name           = format("%s%s", local.bucket_prefix, var.dataproc_bucket_name_suffix)
   delete_enabled                 = var.lifecycle_delete ? [1] : []
   delete_noncurrent_enabled      = var.lifecycle_delete_noncurrent ? [1] : []
+  archive_enabled                = var.lifecycle_archive ? [1] : []
+  coldline_enabled               = var.lifecycle_coldline ? [1] : []
   nearline_enabled               = var.lifecycle_nearline ? [1] : []
 }

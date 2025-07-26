@@ -39,6 +39,36 @@ resource "google_storage_bucket" "tamr_bucket" {
   }
 
   dynamic "lifecycle_rule" {
+    for_each = local.archive_enabled
+    content {
+      condition {
+        age            = var.lifecycle_archive_days
+        matches_prefix = var.lifecycle_archive_prefix
+      }
+      action {
+        # see https://cloud.google.com/storage/docs/storage-classes
+        type          = "SetStorageClass"
+        storage_class = "ARCHIVE"
+      }
+    }
+  }
+
+  dynamic "lifecycle_rule" {
+    for_each = local.coldline_enabled
+    content {
+      condition {
+        age            = var.lifecycle_coldline_days
+        matches_prefix = var.lifecycle_coldline_prefix
+      }
+      action {
+        # see https://cloud.google.com/storage/docs/storage-classes
+        type          = "SetStorageClass"
+        storage_class = "COLDLINE"
+      }
+    }
+  }
+
+  dynamic "lifecycle_rule" {
     for_each = local.nearline_enabled
     content {
       condition {
