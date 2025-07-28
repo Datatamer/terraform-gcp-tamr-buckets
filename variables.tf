@@ -78,6 +78,43 @@ variable "force_destroy" {
   description = "force destroy potentially persistent buckets"
 }
 
+# ARCHIVE archive
+variable "lifecycle_archive" {
+  default     = false
+  type        = bool
+  description = "Set lifecycle rule to move the objects to archive storage after lifecycle_archive_days days"
+}
+
+variable "lifecycle_archive_days" {
+  default     = 90
+  type        = number
+  description = "If lifecycle_archive is true, move objects to archive storage after this many days"
+}
+
+variable "lifecycle_archive_prefix" {
+  default     = []
+  type        = list(string)
+  description = "Object prefixes to apply the lifecycle rule to for archive storage rule."
+}
+
+variable "lifecycle_coldline" {
+  default     = false
+  type        = bool
+  description = "Set lifecycle rule to move the objects to coldline storage after lifecycle_coldline_days days"
+}
+
+variable "lifecycle_coldline_days" {
+  default     = 30
+  type        = number
+  description = "If lifecycle_coldline is true, move objects to coldline storage after this many days"
+}
+
+variable "lifecycle_coldline_prefix" {
+  default     = []
+  type        = list(string)
+  description = "Object prefixes to apply the lifecycle rule to for coldline storage rule."
+}
+
 variable "lifecycle_delete" {
   default     = false
   type        = bool
@@ -118,6 +155,12 @@ variable "lifecycle_nearline_prefix" {
   default     = []
   type        = list(string)
   description = "Object prefixes to apply the lifecycle rule to for nearline storage rule."
+}
+
+variable "number_newer_versions" {
+  default     = 2
+  type        = number
+  description = "number of newer versions of noncurrent objects"
 }
 
 variable "versioning_enabled" {
